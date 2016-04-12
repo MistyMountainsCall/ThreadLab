@@ -32,7 +32,7 @@ public class ThreadLab extends JFrame {
         Thread t = new Thread(cp);
         do {
             try {
-                Thread.sleep(166);
+                Thread.sleep(1000/30);
             } catch (InterruptedException ex) {}
             if(!stopFlag) {
                 t.run();
