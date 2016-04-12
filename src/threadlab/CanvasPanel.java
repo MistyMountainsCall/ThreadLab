@@ -13,9 +13,11 @@ import javax.swing.JPanel;
 public class CanvasPanel extends JPanel implements ActionListener, Runnable{
     int x, y;
     int offset = 25;
+    Button b;
+    
     CanvasPanel()
     {
-        Button b = new Button("Quit");
+        b = new Button("Stop");
         b.addActionListener(this);
         add(b);
         x = 50;
@@ -32,7 +34,13 @@ public class CanvasPanel extends JPanel implements ActionListener, Runnable{
     @Override
     public void actionPerformed(ActionEvent ae)
     {
-        ThreadLab.stopFlag = true;
+        if(ThreadLab.stopFlag) {
+            ThreadLab.stopFlag = false;
+            b.setLabel("Stop");
+        } else {
+            ThreadLab.stopFlag = true;
+            b.setLabel("Start");
+        }
     }
 
     @Override
@@ -44,5 +52,4 @@ public class CanvasPanel extends JPanel implements ActionListener, Runnable{
         y += offset;
         repaint();
     }
-  
 }

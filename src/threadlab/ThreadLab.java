@@ -21,7 +21,6 @@ public class ThreadLab extends JFrame {
         cp = new CanvasPanel();
         getContentPane().add(cp, BorderLayout.CENTER);
         setVisible(true);
-
     }
 
     public static void main(String[] args) {
@@ -31,17 +30,14 @@ public class ThreadLab extends JFrame {
     
     public void animate() {
         Thread t = new Thread(cp);
-        t.start();
-        
         do {
             try {
                 Thread.sleep(166);
-            } catch (InterruptedException ex) {
-                System.out.println("derp");
+            } catch (InterruptedException ex) {}
+            if(!stopFlag) {
+                t.run();
             }
-            
-            t.run();
-        } while(!stopFlag);
+        } while(true);
         
     }
 }
